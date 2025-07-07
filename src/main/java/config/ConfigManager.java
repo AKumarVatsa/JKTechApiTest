@@ -1,8 +1,6 @@
 package config;
-
 import java.io.FileInputStream;
 import java.util.Properties;
-
 public class ConfigManager {
 	private static Properties props = new Properties();
 
