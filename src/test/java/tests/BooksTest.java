@@ -2,12 +2,9 @@ package tests;
 
 import static constants.EndPoints.*;
 import static io.restassured.RestAssured.given;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.Status;
-
 import base.BaseTest;
 import config.ConfigManager;
 import io.restassured.response.Response;
