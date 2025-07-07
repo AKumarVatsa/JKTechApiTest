@@ -59,7 +59,7 @@ Runs on **every push** and **pull request** to `main`.
 
 ### Steps in CICD process:
 - Checkout code
-- Setup Java (Temurin 17)
+- Setup Java (17)
 - Build and run tests via Maven
 - Upload test reports:
   - Surefire Reports (TestNG)
@@ -80,16 +80,13 @@ View the report in your browser.
 test-output/ExtentReports.html
 
 ## How to View GitHub Actions Reports
-Go to repo URL (https://github.com/AKumarVatsa/BookStoreAPITesting.git) → Actions
+Go to repo URL (https://github.com/AKumarVatsa/JKTechApiTest.git) → Actions
 Click on the latest workflow run.
 Scroll to Artifacts.
 
 Download-
-
 Extent Report (ExtentReports.html)
-
 JaCoCo Report (index.html)
-
 Surefire Report
 
 ## Contributing to repo:
