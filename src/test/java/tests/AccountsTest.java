@@ -1,25 +1,18 @@
 package tests;
-
 import static constants.EndPoints.*;
 import static io.restassured.RestAssured.given;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.Status;
-
 import base.BaseTest;
 import config.ConfigManager;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
 public class AccountsTest extends BaseTest {
-
 	public static String username = "user" + (int) (Math.random() * 10000);
 	public static String token;
 	public Response response;
 	public static String id;
-
 	@Test(priority = 1)
 	public void testCreateUser() {
 
