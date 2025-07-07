@@ -1,5 +1,4 @@
 package constants;
-
 public class EndPoints {
 
 	public static final String CREATE_USER = "/Account/v1/User";
