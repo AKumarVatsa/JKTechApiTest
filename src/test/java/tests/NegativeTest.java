@@ -1,17 +1,13 @@
 package tests;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.Status;
-
 import base.BaseTest;
 import config.ConfigManager;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-
 import static constants.EndPoints.*;
 
 public class NegativeTest extends BaseTest {
