@@ -1,5 +1,5 @@
 package tests;
-
+import static constants.EndPoints.*;
 import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,205 +8,120 @@ import base.BaseTest;
 import config.ConfigManager;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import static constants.EndPoints.*;
 
 public class NegativeTest extends BaseTest {
-	
-	public Response response;
 
-	@Test
-	public void testCreateUserWithWeakPassword() {
-	    test = report.createTest("Create User with Weak Password");
+    private Response response;
 
-	    String requestBody = """
-	        {
-	          "userName": "weakUser123",
-	          "password": "12345"
-	        }
-	        """;
+    // ─────────────────────────────────────────────
+    // 🔧 Utility Methods
+    // ─────────────────────────────────────────────
 
-	     response = given()
-	        .contentType(ContentType.JSON)
-	        .body(requestBody)
-	    .when()
-	        .post(CREATE_USER)
-	    .then()
-	        .statusCode(400)
-	        .extract().response();
+    private Response sendRequest(String method, String endpoint, String body, boolean authRequired, String pathParamKey, String pathParamValue) {
+        var request = given().contentType(ContentType.JSON).body(body);
 
-	    String message = response.jsonPath().getString("message");
-	    Assert.assertTrue(message.contains("Passwords must have"), "Expected password policy error");
-	    test.log(Status.PASS, "Weak password was correctly rejected.");
-	    
-	    System.out.println("Response Body for create user with weak password: " + response.getBody().asString()); // helpful debug
-	  
-	 	test.log(Status.INFO, "Response body for new user with weak password is " + response.getBody().asString());
-	}
-	
-	/**
-	 * Generate token with invalid credentials.
-	 */
-	@Test
-	public void testGenerateTokenInvalidCredentials() {
-	    test = report.createTest("Generate Token with Invalid Credentials");
+        if (authRequired) {
+            request.header("Authorization", "Bearer " + AccountsTest.token);
+        }
+        if (pathParamKey != null) {
+            request.pathParam(pathParamKey, pathParamValue);
+        }
 
-	    String requestBody = """
-	        {
-	          "userName": "nonexistentUser",
-	          "password": "wrongPass1!"
-	        }
-	        """;
+        return request.when().request(method, endpoint + (pathParamKey != null ? "{" + pathParamKey + "}" : ""))
+                .then().extract().response();
+    }
 
-	     response = given()
-	        .contentType(ContentType.JSON)
-	        .body(requestBody)
-	    .when()
-	        .post(GENERATE_TOKEN)
-	    .then()
-	        .statusCode(200)
-	        .extract().response();
+    private void logAndAssert(String expectedMsg, String actualResponse, String logTitle, int expectedStatus) {
+        Assert.assertTrue(actualResponse.contains(expectedMsg), "Expected message mismatch.");
+        test.log(Status.INFO, "Response: " + actualResponse);
+        test.log(Status.PASS, logTitle + " (Status: " + expectedStatus + ")");
+    }
 
-	    String status = response.jsonPath().getString("status");
-	    Assert.assertEquals(status, "Failed");
-	    test.log(Status.PASS, "Invalid login attempt was correctly rejected.");
-	    
-	    System.out.println("Response Body for generate token with invalid credentials: " + response.getBody().asString()); // helpful debug
-		 // print in reports.
-		test.log(Status.INFO, "Response body for generate token with invalid credentials " + response.getBody().asString());
-	}
-	
-	
-	/**
-	 * Create book with no authorization.
-	 */
-	
-	@Test
-	
-	public void createBookInCollection() {
+    private void prepareTest(String title) {
+        test = report.createTest(title);
+    }
 
-		test = report.createTest("Create Book without authorisation");
+    // ─────────────────────────────────────────────
+    // ❌ Negative Tests
+    // ─────────────────────────────────────────────
 
-		String requestBody = String.format("""
-				{
-				  "userId": "%s",
-				  "collectionOfIsbns": [{ "isbn": "%s" }]
-				}
-				""", AccountsTest.id, ConfigManager.get("firstIsbn"));
+    @Test
+    public void testCreateUserWithWeakPassword() {
+        prepareTest("Create User with Weak Password");
 
-		response = given()
-				.contentType("application/json")
-				.body(requestBody)
-				.when()
-				.post(ADD_BOOKS)
-				.then()
-				.statusCode(401)
-				.extract().response();
+        String body = """
+            { "userName": "weakUser123", "password": "12345" }
+            """;
 
-		String message = response.jsonPath().getString("message");
-	    Assert.assertTrue(message.contains("User not authorized!"));
-	    test.log(Status.PASS, "Attempt to create books without authorisation was correctly rejected.");
-	    
-	    System.out.println("Response Body for create book without authorisation: " + response.getBody().asString()); // helpful debug
-		test.log(Status.INFO, "Response body for create book without authorisation " + response.getBody().asString());
-	}
-	
-	/**
-	 * Get user but provide wrong user id to search.
-	 */
-	@Test
-	public void testUserIsCreated() {
+        response = sendRequest("POST", CREATE_USER, body, false, null, null);
+        Assert.assertEquals(response.statusCode(), 400);
+        logAndAssert("Passwords must have", response.asString(), "Weak password rejected", 400);
+    }
 
-		test = report.createTest("Get user but search for wrong user id");
+    @Test
+    public void testGenerateTokenInvalidCredentials() {
+        prepareTest("Generate Token with Invalid Credentials");
 
-		 response = given()
-				 .contentType(ContentType.JSON)
-				 .pathParam("userId", "invalidUserId")
-				 .when()
-				 .get(GET_USER + "{userId}")
-				 .then()
-				.statusCode(401)
-				.extract().response();
-		 
-		 String message = response.jsonPath().getString("message");
-		    Assert.assertTrue(message.contains("User not authorized!"));
-		    test.log(Status.PASS, "Attempt to get invalid userid was correctly rejected.");
-		
-		 System.out.println("Response Body for get user with invalid userid: " + response.getBody().asString()); // helpful debug
-		test.log(Status.INFO, "Response body for get user with invalid userid " + response.getBody().asString());
-}
-	
-	/**
-	 * Update book but dont provide ISBN.
-	 */
-	@Test(dependsOnMethods = { "tests.AccountsTest.testCreateUser" })
-	public void updateBookInCollection() {
+        String body = """
+            { "userName": "nonexistentUser", "password": "wrongPass1!" }
+            """;
 
-		test = report.createTest("Update Book but dont provide ISBN");
+        response = sendRequest("POST", GENERATE_TOKEN, body, false, null, null);
+        Assert.assertEquals(response.statusCode(), 200);
+        logAndAssert("Failed", response.jsonPath().getString("status"), "Invalid login attempt handled", 200);
+    }
 
-		String body = String.format("""
-				{
-				  "userId": "%s",
-				  "isbn": "%s"
-				}
-				""", AccountsTest.id, "");
+    @Test
+    public void createBookInCollection() {
+        prepareTest("Create Book without Authorization");
 
-		response = given()
-				.header("Authorization", "Bearer " + AccountsTest.token)
-				.contentType("application/json")
-				.pathParam("isbn", ConfigManager.get("firstIsbn"))
-				.body(body)
-				.when()
-				.put(UPDATE_BOOKS + "{isbn}")
-				.then()
-				.statusCode(400)
-				.extract().response();
-		
-		String message = response.jsonPath().getString("message");
-	    Assert.assertTrue(message.contains("Request Body is Invalid!"));
-	    test.log(Status.PASS, "Attempt to update book with no ISBN was correctly rejected.");
-		
-		System.out.println("Response Body for update books with no ISBN: " + response.getBody().asString()); // helpful debug
+        String body = String.format("""
+            { "userId": "%s", "collectionOfIsbns": [{ "isbn": "%s" }] }
+            """, AccountsTest.id, ConfigManager.get("firstIsbn"));
 
-		// print in reports.
-		test.log(Status.INFO, "Response body for updating book with no ISBN " + response.getBody().asString());
-	}
-	
-	/**
-	 * Delete book but pass wrong user id.
-	 */
-	@Test()
-	public void deleteBookFromCollection() {
+        response = sendRequest("POST", ADD_BOOKS, body, false, null, null);
+        Assert.assertEquals(response.statusCode(), 401);
+        logAndAssert("User not authorized!", response.asString(), "Unauthorized book creation blocked", 401);
+    }
 
-		test = report.createTest("Delete Book but dont provide user id");
+    @Test
+    public void testUserIsCreated() {
+        prepareTest("Get User with Invalid ID");
 
-		String body = String.format("""
-				{
-				  "userId": "%s",
-					"isbn": "%s"
-				}
-				""", "", ConfigManager.get("firstIsbn"));
+        response = given()
+                .contentType(ContentType.JSON)
+                .pathParam("userId", "invalidUserId")
+                .get(GET_USER + "{userId}")
+                .then()
+                .statusCode(401)
+                .extract().response();
 
-		response = given()
-				.header("Authorization", "Bearer " + AccountsTest.token)
-				.contentType("application/json")
-				.body(body)
-				.when()
-				.delete(DELETE_BOOK)
-				.then()
-				.statusCode(401)
-				.extract().response();
-		
-		String message = response.jsonPath().getString("message");
-	    Assert.assertTrue(message.contains("User Id not correct!"));
-	    test.log(Status.PASS, "Attempt to delete book without passing userid was correctly rejected.");
-		
-		System.out.println("Response Body for delete books without passing userid: " + response.getBody().asString()); // helpful debug
+        logAndAssert("User not authorized!", response.asString(), "Invalid user lookup blocked", 401);
+    }
 
-		// print in reports.
-		test.log(Status.INFO, "Response body for delete books without passing userid " + response.getBody().asString());
-		
-		
+    @Test(dependsOnMethods = {"tests.AccountsTest.testCreateUser"})
+    public void updateBookInCollection() {
+        prepareTest("Update Book with Empty ISBN");
 
-		
-	}
+        String body = String.format("""
+            { "userId": "%s", "isbn": "" }
+            """, AccountsTest.id);
+
+        response = sendRequest("PUT", UPDATE_BOOKS, body, true, "isbn", ConfigManager.get("firstIsbn"));
+        Assert.assertEquals(response.statusCode(), 400);
+        logAndAssert("Request Body is Invalid!", response.asString(), "Update without ISBN rejected", 400);
+    }
+
+    @Test
+    public void deleteBookFromCollection() {
+        prepareTest("Delete Book without User ID");
+
+        String body = String.format("""
+            { "userId": "", "isbn": "%s" }
+            """, ConfigManager.get("firstIsbn"));
+
+        response = sendRequest("DELETE", DELETE_BOOK, body, true, null, null);
+        Assert.assertEquals(response.statusCode(), 401);
+        logAndAssert("User Id not correct!", response.asString(), "Unauthorized delete blocked", 401);
+    }
 }
