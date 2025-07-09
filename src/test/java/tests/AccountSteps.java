@@ -1,4 +1,4 @@
-package steps;
+package tests;
 import static constants.EndPoints.*;
 import base.BaseTest;
 import config.ConfigManager;
