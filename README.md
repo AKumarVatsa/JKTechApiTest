@@ -33,5 +33,9 @@ Click on the latest workflow run.
 Scroll to Artifacts.
 Download-Extent Report (ExtentReports.html)
 
+Generate Allure Report
+allure serve target/allure-results
+allure generate target/allure-results --clean -o target/allure-report
+
 
 
