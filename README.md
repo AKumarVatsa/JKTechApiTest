@@ -1,6 +1,4 @@
-# BookStore API Automation Framework
 
-This project is an **API test automation framework** built using **Java**, **RestAssured**, **TestNG**, and **ExtentReports** to validate the core functionalities of the [BookStore API](https://bookstore.toolsqa.com/swagger/). The framework supports **CI/CD using GitHub Actions** and **generates test reports**.
 
 ## Tech Stack
 
@@ -16,7 +14,7 @@ This project is an **API test automation framework** built using **Java**, **Res
 
 ## API Coverage
 
-The framework covers all **CRUD operations** and includes:
+**CRUD operations** 
 
 - **User Management**  
   - Create User  
@@ -75,7 +73,6 @@ cd JKBookStoreAPITesting
 
 Run test using Maven:
 mvn clean test
-
 View the report in your browser.
 test-output/ExtentReports.html
 
@@ -90,10 +87,6 @@ JaCoCo Report (index.html)
 Surefire Report
 
 ## Contributing to repo:
-Fork the repo
-
 Create your feature branch (git checkout -b feature/add-new-test)
-
 Commit and push
-
 Submit a pull request
