@@ -27,45 +27,11 @@
   - Update Book
   - Delete Book 
 
-- **Negative test**
-
-## CI/CD Pipeline
-
-### Trigger:  
-Runs on **every push** and **pull request** to `main`.
-
-### Steps in CICD process:
-- Checkout code
-- Setup Java (17)
-- Build and run tests via Maven
-- Upload test reports:
-  - Surefire Reports (TestNG)
-  - ExtentReports (HTML)
-  - JaCoCo (code coverage)
-
-## Running Tests Locally
-
-### Clone the repo in the required directory on your PC if you want to run locally:
-git clone https://github.com/BookStoreAPITesting.git
-
-cd JKBookStoreAPITesting
-
-Run test using Maven:
-mvn clean test
-View the report in your browser.
-test-output/ExtentReports.html
-
 ## How to View GitHub Actions Reports
 Go to repo URL (https://github.com/AKumarVatsa/JKTechApiTest.git) → Actions
 Click on the latest workflow run.
 Scroll to Artifacts.
+Download-Extent Report (ExtentReports.html)
 
-Download-
-Extent Report (ExtentReports.html)
-JaCoCo Report (index.html)
-Surefire Report
 
-## Contributing to repo:
-Create your feature branch (git checkout -b feature/add-new-test)
-Commit and push
-Submit a pull request
+
