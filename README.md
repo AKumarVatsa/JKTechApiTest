@@ -12,20 +12,22 @@
 | GitHub Actions    | CI/CD pipeline                         |
 | JaCoCo            | Code coverage                          |
 
-## API Coverage
+Press Win+R and enter the command: sysdm.cpl to open the System Properties tool.
 
-**CRUD operations** 
+On the Advanced tab, click Environment variables.
 
-- **User Management**  
-  - Create User  
-  - Generate Token  
-  - Get User  
+In either the User variables or System variables list, double-click the Path variable to open the editing dialog. Note that editing the system variable requires administrator privileges and affects all users of the computer.
 
-- **Book Collection**  
-  - Add Book  
-  - Get Book
-  - Update Book
-  - Delete Book 
+In the Edit environment variable dialog, click New to add a new line entry to the paths list. In the new line, specify the full path to the bin subdirectory from an earlier step, for example: D:\Tools\allure-2.29.0\bin.
+
+If the list contains a path to a previously installed Allure version, delete it.
+
+Click OK to save the changes.
+allure --version
+2.32.0
+Generate Allure Report
+allure serve target/allure-results
+allure generate target/allure-results --clean -o target/allure-report
 
 ## How to View GitHub Actions Reports
 Go to repo URL (https://github.com/AKumarVatsa/JKTechApiTest.git) → Actions
@@ -33,9 +35,7 @@ Click on the latest workflow run.
 Scroll to Artifacts.
 Download-Extent Report (ExtentReports.html)
 
-Generate Allure Report
-allure serve target/allure-results
-allure generate target/allure-results --clean -o target/allure-report
+
 
 
 
