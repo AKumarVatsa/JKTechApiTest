@@ -29,27 +29,6 @@
 
 - **Negative test**
 
-## Testing Strategy
-
-### 1. **Approach to Writing Test Flows**
-- Created modular tests for user and book operations.
-- Used `dependsOnMethods` in TestNG to preserve logical flow (e.g., token creation depends on user creation and so on).
-- Ensured test data like usernames are **randomized using Math.Random class** to avoid conflicts for duplicacy.
-- Used request chaining (e.g., userID from `/User` used for `/Books` and so on).
-
-### 2. **Reliability & Maintainability**
-- Centralized base URL and credentials in `config.properties`.
-- Separated test logic, config, utilities, and reporting.
-- Used assertions on status codes, response payloads.
-- Included **both positive and negative** test scenarios.
-- Implemented `BaseTest` to initialize ExtentReports and RestAssured.
-
-### 3. **Challenges & Solutions**
-| Challenge | Solution |
-|----------|----------|
-| Some API endpoints returned 400/401 unexpectedly | Added proper headers and verified request bodies using Swagger docs |
-| Dynamic data | Used randomization to generate unique usernames |
-
 ## CI/CD Pipeline
 
 ### Trigger:  
