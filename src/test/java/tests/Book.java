@@ -1,4 +1,4 @@
-package pojo;
+package test;
 
 public class Book {
     private String isbn;
