@@ -1,4 +1,4 @@
-package Test;
+package tests;
 
 public class BookActionRequest {
     private String userId;
