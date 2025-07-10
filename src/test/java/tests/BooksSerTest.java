@@ -13,9 +13,9 @@ import com.aventstack.extentreports.Status;
 import base.BaseTest;
 import config.ConfigManager;
 import io.restassured.response.Response;
-import pojo.Book;
-import pojo.BookActionRequest;
-import pojo.BookCollectionRequest;
+import tests.Book;
+import tests.BookActionRequest;
+import tests.BookCollectionRequest;
 
 public class BooksSerTest extends BaseTest {
 
