@@ -4,10 +4,15 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-    features = "src/test/java/tests/books.feature",
-    glue = {"src/test/java/tests/BookSteps.java"},
-    plugin = { "pretty", "html:target/cucumber-reports.html", "json:target/cucumber.json" },
-    monochrome = true
+        // point to your .feature file location
+        features = "src\\test\\java\\resource\\sample.feature",
+        		glue = {"step"},
+
+        plugin = {
+                "pretty",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+        },
+        monochrome = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 }
