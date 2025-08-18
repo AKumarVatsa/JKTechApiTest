@@ -7,15 +7,12 @@
 | Java (17)         | Programming language                   |
 | RestAssured       | API automation                         |
 | TestNG            | Test execution framework               |
-| ExtentReports     | HTML reporting                         |
 | Maven             | Build and dependency management        |
 | GitHub Actions    | CI/CD pipeline                         |
-| JaCoCo            | Code coverage                          |
+
 
 Allure Report Setting
 =====================
-Press Win+R and enter the command: **sysdm.cpl** to open the System Properties tool.
-
 On the Advanced tab, click **Environment variables**.
 
 In the Edit environment variable dialog, click New to add a new line entry to the paths list.
