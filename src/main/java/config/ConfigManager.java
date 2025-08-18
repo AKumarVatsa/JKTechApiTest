@@ -9,7 +9,7 @@ public class ConfigManager {
             FileInputStream fis = new FileInputStream("config.properties");
             props.load(fis);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load config.properties", e);
+            throw new RuntimeException("Failed to load config file", e);
         }
     }
 
