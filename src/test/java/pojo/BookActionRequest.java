@@ -1,4 +1,4 @@
-package tests;
+package pojo;
 
 public class BookActionRequest {
     private String userId;
