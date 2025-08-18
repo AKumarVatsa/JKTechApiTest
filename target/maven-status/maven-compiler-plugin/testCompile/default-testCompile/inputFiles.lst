@@ -1,6 +1,3 @@
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\tests\BooksTest.java
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\base\BaseTest.java
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\constants\EndPoints.java
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\tests\AccountsTest.java
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\utils\ExtentReportManager.java
-D:\batch26GitRepo\JKTest\BookStoreAPITesting\src\test\java\tests\NegativeTest.java
+C:\Users\User\git\JKTechApiTest\src\test\java\constants\EndPoints.java
+C:\Users\User\git\JKTechApiTest\src\test\java\runner\TestRunner.java
+C:\Users\User\git\JKTechApiTest\src\test\java\step\ApiSteps.java

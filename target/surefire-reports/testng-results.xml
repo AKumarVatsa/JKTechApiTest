@@ -1,81 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="14" passed="14" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-07T16:51:12 IST" name="FastAPI Test Suite" finished-at="2025-07-07T16:51:25 IST" duration-ms="13060">
+  <suite started-at="2025-08-18T21:50:33 IST" name="SampleAPITests" finished-at="2025-08-18T21:50:35 IST" duration-ms="1790">
     <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@4c1909a3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-07-07T16:51:12 IST" name="API Tests" finished-at="2025-07-07T16:51:25 IST" duration-ms="13060">
-      <class name="tests.AccountsTest">
-        <test-method is-config="true" signature="init()[pri:0, instance:tests.AccountsTest@47874b25]" started-at="2025-07-07T16:51:11 IST" name="init" finished-at="2025-07-07T16:51:12 IST" duration-ms="993" status="PASS">
+    <test started-at="2025-08-18T21:50:33 IST" name="RunCucumberTests" finished-at="2025-08-18T21:50:35 IST" duration-ms="1790">
+      <class name="runner.TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.TestRunner@4c1909a3]" started-at="2025-08-18T21:50:33 IST" name="setUpClass" finished-at="2025-08-18T21:50:33 IST" duration-ms="325" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@15639d09]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- init -->
-        <test-method signature="testCreateUser()[pri:1, instance:tests.AccountsTest@47874b25]" started-at="2025-07-07T16:51:12 IST" name="testCreateUser" finished-at="2025-07-07T16:51:15 IST" duration-ms="2844" status="PASS">
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@4c1909a3]" started-at="2025-08-18T21:50:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-08-18T21:50:35 IST" duration-ms="1429" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Get user by ID"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Sample API Test"]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateUser -->
-        <test-method signature="testGenerateToken()[pri:2, instance:tests.AccountsTest@47874b25]" started-at="2025-07-07T16:51:15 IST" name="testGenerateToken" finished-at="2025-07-07T16:51:16 IST" depends-on-methods="tests.AccountsTest.testCreateUser" duration-ms="1245" status="PASS">
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.TestRunner@4c1909a3]" started-at="2025-08-18T21:50:35 IST" name="tearDownClass" finished-at="2025-08-18T21:50:35 IST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGenerateToken -->
-        <test-method signature="testUserIsCreated()[pri:3, instance:tests.AccountsTest@47874b25]" started-at="2025-07-07T16:51:16 IST" name="testUserIsCreated" finished-at="2025-07-07T16:51:18 IST" depends-on-methods="tests.AccountsTest.testCreateUser" duration-ms="1178" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testUserIsCreated -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AccountsTest@47874b25]" started-at="2025-07-07T16:51:25 IST" name="tearDown" finished-at="2025-07-07T16:51:26 IST" duration-ms="309" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.AccountsTest -->
-      <class name="tests.NegativeTest">
-        <test-method signature="createBookInCollection()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:21 IST" name="createBookInCollection" finished-at="2025-07-07T16:51:21 IST" duration-ms="510" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createBookInCollection -->
-        <test-method signature="deleteBookFromCollection()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:21 IST" name="deleteBookFromCollection" finished-at="2025-07-07T16:51:22 IST" duration-ms="501" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deleteBookFromCollection -->
-        <test-method signature="testCreateUserWithWeakPassword()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:22 IST" name="testCreateUserWithWeakPassword" finished-at="2025-07-07T16:51:22 IST" duration-ms="513" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCreateUserWithWeakPassword -->
-        <test-method signature="testGenerateTokenInvalidCredentials()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:22 IST" name="testGenerateTokenInvalidCredentials" finished-at="2025-07-07T16:51:24 IST" duration-ms="1970" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGenerateTokenInvalidCredentials -->
-        <test-method signature="testUserIsCreated()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:24 IST" name="testUserIsCreated" finished-at="2025-07-07T16:51:25 IST" duration-ms="495" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testUserIsCreated -->
-        <test-method signature="updateBookInCollection()[pri:0, instance:tests.NegativeTest@1bdf8190]" started-at="2025-07-07T16:51:25 IST" name="updateBookInCollection" finished-at="2025-07-07T16:51:25 IST" depends-on-methods="tests.AccountsTest.testCreateUser" duration-ms="506" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- updateBookInCollection -->
-      </class> <!-- tests.NegativeTest -->
-      <class name="tests.BooksTest">
-        <test-method signature="createBookInCollection()[pri:1, instance:tests.BooksTest@4f8969b0]" started-at="2025-07-07T16:51:18 IST" name="createBookInCollection" finished-at="2025-07-07T16:51:18 IST" depends-on-methods="tests.AccountsTest.testCreateUser, tests.AccountsTest.testGenerateToken" duration-ms="679" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createBookInCollection -->
-        <test-method signature="testGetAllBooks()[pri:2, instance:tests.BooksTest@4f8969b0]" started-at="2025-07-07T16:51:18 IST" name="testGetAllBooks" finished-at="2025-07-07T16:51:19 IST" depends-on-methods="tests.BooksTest.createBookInCollection" duration-ms="534" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetAllBooks -->
-        <test-method signature="updateBookInCollection()[pri:3, instance:tests.BooksTest@4f8969b0]" started-at="2025-07-07T16:51:19 IST" name="updateBookInCollection" finished-at="2025-07-07T16:51:20 IST" depends-on-methods="tests.BooksTest.createBookInCollection" duration-ms="745" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- updateBookInCollection -->
-        <test-method signature="deleteBookFromCollection()[pri:4, instance:tests.BooksTest@4f8969b0]" started-at="2025-07-07T16:51:20 IST" name="deleteBookFromCollection" finished-at="2025-07-07T16:51:20 IST" depends-on-methods="tests.BooksTest.createBookInCollection" duration-ms="710" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deleteBookFromCollection -->
-        <test-method signature="checkIfBookDeleted()[pri:5, instance:tests.BooksTest@4f8969b0]" started-at="2025-07-07T16:51:20 IST" name="checkIfBookDeleted" finished-at="2025-07-07T16:51:21 IST" depends-on-methods="tests.BooksTest.deleteBookFromCollection" duration-ms="577" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkIfBookDeleted -->
-      </class> <!-- tests.BooksTest -->
-    </test> <!-- API Tests -->
-  </suite> <!-- FastAPI Test Suite -->
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runner.TestRunner -->
+    </test> <!-- RunCucumberTests -->
+  </suite> <!-- SampleAPITests -->
 </testng-results>
