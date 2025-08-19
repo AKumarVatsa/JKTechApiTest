@@ -23,8 +23,11 @@ Click OK to save the changes.
 **allure --version**
 2.32.0
 **Generate Allure Report**
+Run mvn clean test first, then generate the report:
+
+allure generate target/allure-results -o target/allure-report --clean
 allure serve target/allure-results
-allure generate target/allure-results --clean -o target/allure-report
+
 
 ## How to View GitHub Actions Reports
 Go to repo URL (https://github.com/AKumarVatsa/JKTechApiTest.git) → Actions
