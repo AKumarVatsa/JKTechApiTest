@@ -20,7 +20,7 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      - name: Cache Maven packages
+      - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
@@ -28,7 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Run Tests with Maven (TestNG + Cucumber)
+      - name: Run Tests (TestNG + Rest-Assured + Allure)
         run: mvn clean test
 
       - name: Upload Surefire Reports
