@@ -17,33 +17,6 @@
         <testng.version>7.9.0</testng.version>
     </properties>
 
-         <properties>
-  <!-- Add or adjust Allure version as needed -->
-  <allure.version>2.24.0</allure.version>
-</properties>
-
-<dependencies>
-  <!-- Allure TestNG integration -->
-  <dependency>
-    <groupId>io.qameta.allure</groupId>
-    <artifactId>allure-testng</artifactId>
-    <version>${allure.version}</version>
-    <scope>test</scope>
-  </dependency>
-</dependencies>
-
-<build>
-  <plugins>
-    <!-- Add Allure Maven plugin -->
-    <plugin>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-maven</artifactId>
-      <version>${allure.version}</version>
-    </plugin>
-  </plugins>
-</build>
-
-
     <dependencies>
         <!-- Rest Assured -->
         <dependency>
@@ -71,21 +44,28 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.9.0</version>
-    <scope>test</scope>
+            <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
-        
-         <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>2.0.13</version>
-        <scope>test</scope>
-    </dependency>
 
-        <!-- Allure -->
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.13</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Allure: Cucumber + TestNG integration -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
@@ -106,7 +86,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Allure Plugin -->
+            <!-- Allure Maven Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
