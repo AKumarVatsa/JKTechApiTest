@@ -8,7 +8,6 @@ import constants.EndPoints;
 
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class ApiSteps {
     private Response response;

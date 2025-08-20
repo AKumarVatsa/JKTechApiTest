@@ -1,11 +1,8 @@
 package step;
 
 import static io.restassured.RestAssured.given;
-//import static org.junit.Assert.assertNotNull;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
-//import static org.junit.Assert.assertEquals;
-
 import pojo.BookingDates;
 import pojo.CreateBooking;
 import io.cucumber.java.en.*;
