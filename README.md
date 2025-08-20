@@ -6,7 +6,8 @@
 |-------------------|----------------------------------------|
 | Java (17)         | Programming language                   |
 | RestAssured       | API automation                         |
-| TestNG            | Test execution framework               |
+| TestNG            | Test execution framework  
+| Cucumber          | BDD
 | Maven             | Build and dependency management        |
 | GitHub Actions    | CI/CD pipeline                         |
 
