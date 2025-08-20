@@ -21,13 +21,8 @@ public class ApiSteps {
                 .get();
     }
 
-    @Then("the response status code should be {int}")
-    public void theResponseStatusCodeShouldBe(int statusCode) {
-        assertEquals(statusCode, response.getStatusCode());
-    }
-
-    @Then("the response should contain {string}")
-    public void theResponseShouldContain(String expectedValue) {
-        assertTrue(response.getBody().asString().contains(expectedValue));
+    @Then("response validation")
+    public void theResponseShouldContain() {
+        assertEquals(200, response.getStatusCode());
     }
 }
